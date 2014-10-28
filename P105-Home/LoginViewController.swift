@@ -65,18 +65,22 @@ class LoginViewController: UIViewController {
     }
     
     func shake() {
-        UIView.animateWithDuration(0.1, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.7, options: nil, animations: {
+        
+        UIView.animateWithDuration(0.1, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.5, options: nil, animations: {
             println("Animating")
-            self.loginModal?.transform = CGAffineTransformMakeTranslation(-10, 10)
-            }, completion:  nil)
-        UIView.animateWithDuration(0.1, delay: 0.1, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.7, options: nil, animations: {
-            println("Animating")
-            self.loginModal?.transform = CGAffineTransformMakeTranslation(10, -10)
-            }, completion:  nil)
-        UIView.animateWithDuration(0.1, delay: 0.2, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.7, options: nil, animations: {
-            println("Animating")
-            self.loginModal?.transform = CGAffineTransformMakeTranslation(0, 0)
-            }, completion:  nil)
+            self.loginModal?.transform = CGAffineTransformMakeTranslation(-7, 3)
+            }, completion:  { success in
+                UIView.animateWithDuration(0.1, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.5, options: nil, animations: {
+                    println("Animating")
+                    self.loginModal?.transform = CGAffineTransformMakeTranslation(2, -3)
+                    }, completion:  { success in
+                        UIView.animateWithDuration(0.1, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.5, options: nil, animations: {
+                            println("Animating")
+                            self.loginModal?.transform = CGAffineTransformMakeTranslation(0, 0)
+                            }, completion:  nil)
+                })
+        })
+    
     }
     
     func removeLogin() {

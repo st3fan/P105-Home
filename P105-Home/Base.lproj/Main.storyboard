@@ -158,7 +158,7 @@
         <!--Web View Controller-->
         <scene sceneID="Y9j-20-WDI">
             <objects>
-                <viewController id="mCl-EX-KHz" customClass="WebViewController" customModule="P105_Home" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overCurrentContext" id="mCl-EX-KHz" customClass="WebViewController" customModule="P105_Home" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2oQ-ZN-XaW"/>
                         <viewControllerLayoutGuide type="bottom" id="vbN-DT-B4W"/>
@@ -167,7 +167,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Xt-x9-XTh">
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Xt-x9-XTh">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="2go-Su-dyi">
@@ -191,8 +191,10 @@
                             </webView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="g1j-V9-Jl5" secondAttribute="trailing" id="fe6-CM-UIB"/>
-                            <constraint firstItem="g1j-V9-Jl5" firstAttribute="leading" secondItem="OuO-c5-hqz" secondAttribute="leadingMargin" id="zb5-Ko-ESc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="g1j-V9-Jl5" secondAttribute="trailing" constant="-16" id="IqB-rc-hxa"/>
+                            <constraint firstItem="4Xt-x9-XTh" firstAttribute="leading" secondItem="OuO-c5-hqz" secondAttribute="leadingMargin" constant="-16" id="JPB-Gs-bKa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4Xt-x9-XTh" secondAttribute="trailing" constant="-16" id="M8n-Tt-5B1"/>
+                            <constraint firstItem="g1j-V9-Jl5" firstAttribute="leading" secondItem="OuO-c5-hqz" secondAttribute="leadingMargin" constant="-16" id="vn5-LH-u8m"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bEx-HY-mUQ"/>
