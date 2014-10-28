@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="24"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Axn-Rf-qoy">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="24"/>
+                    <subviews>
+                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wM9-hM-HGO">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="24"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="shG-WX-Ato">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="24"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="voB-G5-yEO">
+                                        <rect key="frame" x="0.0" y="-52" width="600" height="128"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="oqo-XO-ecK">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Djt-es-Oou">
+                                                    <rect key="frame" x="199" y="53" width="203" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                                    <color key="textColor" red="0.68805915117263794" green="0.70307886600494385" blue="0.71336764097213745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="Djt-es-Oou" secondAttribute="centerY" id="Jje-x8-fQ4"/>
+                                                <constraint firstAttribute="centerX" secondItem="Djt-es-Oou" secondAttribute="centerX" id="wrm-av-hY2"/>
+                                            </constraints>
+                                        </view>
+                                        <blurEffect style="light"/>
+                                    </visualEffectView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="voB-G5-yEO" firstAttribute="top" secondItem="shG-WX-Ato" secondAttribute="top" id="15g-vb-4kX"/>
+                                    <constraint firstAttribute="trailing" secondItem="voB-G5-yEO" secondAttribute="trailing" id="5yi-vv-IxE"/>
+                                    <constraint firstItem="voB-G5-yEO" firstAttribute="leading" secondItem="shG-WX-Ato" secondAttribute="leading" id="EXi-uv-dKW"/>
+                                    <constraint firstAttribute="bottom" secondItem="voB-G5-yEO" secondAttribute="bottom" id="JuP-qa-wNR"/>
+                                </constraints>
+                            </view>
+                            <color key="backgroundColor" red="0.61410456895828247" green="0.63143360614776611" blue="0.64335471391677856" alpha="0.45000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                            <blurEffect style="light"/>
+                        </visualEffectView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="wM9-hM-HGO" firstAttribute="leading" secondItem="Axn-Rf-qoy" secondAttribute="leading" id="KMW-Ov-ivv"/>
+                        <constraint firstAttribute="bottom" secondItem="wM9-hM-HGO" secondAttribute="bottom" id="LKh-gQ-yfq"/>
+                        <constraint firstAttribute="trailing" secondItem="wM9-hM-HGO" secondAttribute="trailing" id="N7c-Zv-nRR"/>
+                        <constraint firstItem="wM9-hM-HGO" firstAttribute="top" secondItem="Axn-Rf-qoy" secondAttribute="top" id="dyD-3F-oBF"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Axn-Rf-qoy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Et3-St-rmj"/>
+                <constraint firstAttribute="bottom" secondItem="Axn-Rf-qoy" secondAttribute="bottom" id="m4G-iX-Fwx"/>
+                <constraint firstItem="Axn-Rf-qoy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pJs-aS-zAf"/>
+                <constraint firstAttribute="trailing" secondItem="Axn-Rf-qoy" secondAttribute="trailing" id="tFR-Ap-JOE"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="356" y="432"/>
+        </view>
+    </objects>
+</document>
