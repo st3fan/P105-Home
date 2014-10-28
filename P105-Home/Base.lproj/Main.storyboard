@@ -8,7 +8,7 @@
         <!--Bookmarks-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="P105_Home" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vyG-BY-5Lj"/>
                         <viewControllerLayoutGuide type="bottom" id="58P-ls-rRL"/>
@@ -391,42 +391,6 @@
             </objects>
             <point key="canvasLocation" x="1407.5" y="-714.5"/>
         </scene>
-        <!--Item 2-->
-        <scene sceneID="L41-IC-ay6">
-            <objects>
-                <viewController id="SXn-u4-xoa" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3AE-4K-sAr"/>
-                        <viewControllerLayoutGuide type="bottom" id="u2Y-mT-a5W"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="AHb-Tg-v4F">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="17L-84-vfz"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="90T-qH-Wbg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
-        <!--Item 1-->
-        <scene sceneID="MUn-lf-bOb">
-            <objects>
-                <viewController id="JiX-xs-bdg" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="4HQ-G7-D08"/>
-                        <viewControllerLayoutGuide type="bottom" id="xgd-wM-mMl"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="OEA-yO-LSN">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="KZt-Bb-kTD"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mII-Hl-wHC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gti-sB-Byh">
             <objects>
@@ -437,10 +401,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
-                    <connections>
-                        <segue destination="JiX-xs-bdg" kind="relationship" relationship="viewControllers" id="J6F-iF-mKS"/>
-                        <segue destination="SXn-u4-xoa" kind="relationship" relationship="viewControllers" id="N3c-zY-3Z8"/>
-                    </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KGm-2J-S8U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
