@@ -713,6 +713,7 @@
 				E493BFE61A03132A000735BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

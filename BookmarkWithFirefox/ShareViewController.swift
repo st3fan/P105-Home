@@ -48,6 +48,7 @@ class ShareViewController: SLComposeServiceViewController, NSURLSessionDelegate
 {
     var selectedItem = 0
     var configurationItem = SLComposeSheetConfigurationItem()
+    var logo: UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,24 +56,35 @@ class ShareViewController: SLComposeServiceViewController, NSURLSessionDelegate
         navigationController?.navigationBar.backgroundColor = UIColor.orangeColor()
         
         // This is a pretty bad back - because it seems navigationItem.titleView does not work :-( - So how does Evernote do it?
+        
         let navigationBar: UINavigationBar = view.subviews[2].subviews[2] as UINavigationBar
-        let logo = UIImageView(image: UIImage(named: "flat-logo"))
-        logo.frame = CGRect(x: navigationBar.frame.width/2-32, y: 6, width: 32, height: 32)
-        navigationBar.addSubview(logo)
+        logo = UIImageView(image: UIImage(named: "flat-logo"))
+        navigationBar.addSubview(logo!)
+        
+        selectedItem = NSUserDefaults.standardUserDefaults().integerForKey("LastSelectedShareDestination")
         
         configurationItem.title = ShareDestinations[selectedItem]
         configurationItem.tapHandler = {
             let vc = ShareDestinationPickerViewController()
             vc.completionHandler = { (selectedItem:Int) -> Void in
-                //dispatch_async(dispatch_get_main_queue(),{
-                    self.selectedItem = selectedItem
-                    self.configurationItem.title = ShareDestinations[selectedItem]
-                    self.reloadConfigurationItems()
-                    self.popConfigurationViewController()
-                //})
+                NSUserDefaults.standardUserDefaults().setInteger(selectedItem, forKey: "LastSelectedShareDestination")
+                self.selectedItem = selectedItem
+                self.configurationItem.title = ShareDestinations[selectedItem]
+                self.reloadConfigurationItems()
+                self.popConfigurationViewController()
             }
             self.pushConfigurationViewController(vc)
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let navigationBar: UINavigationBar = view.subviews[2].subviews[2] as UINavigationBar
+        if navigationBar.frame.height < 40 {
+            logo?.frame = CGRect(x: (navigationBar.frame.width/2)-16, y: 4, width: 24, height: 24)
+        } else {
+            logo?.frame = CGRect(x: (navigationBar.frame.width/2)-16, y: 6, width: 32, height: 32)
+        }
+        logo?.autoresizingMask = UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin
     }
     
     override func isContentValid() -> Bool {
