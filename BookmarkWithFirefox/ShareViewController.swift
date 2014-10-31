@@ -9,9 +9,15 @@
 import UIKit
 import Social
 
+typealias ShareDestinationPickerCompletionHandler = (selectedItem: Int) -> Void
 
-class ShareDestinationsViewController: UITableViewController {
+let ShareDestinations = ["Send to Unsorted Bookmarks", "Add to my Reading List", "Send to my Home Screen"]
 
+class ShareDestinationPickerViewController: UITableViewController
+{
+    var completionHandler: ShareDestinationPickerCompletionHandler?
+    var selectedItem: Int?
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -22,9 +28,12 @@ class ShareDestinationsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        let titles = ["Send to Unsorted Bookmarks", "Add to my Reading List", "Send to my Home Screen"]
-        cell.textLabel.text = titles[indexPath.row]
+        cell.textLabel.text = ShareDestinations[indexPath.row]
         return cell
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        completionHandler?(selectedItem: indexPath.row)
     }
 }
 
@@ -35,8 +44,11 @@ struct SharedBookmark {
     var title: String
 }
 
-class ShareViewController: SLComposeServiceViewController, NSURLSessionDelegate {
-
+class ShareViewController: SLComposeServiceViewController, NSURLSessionDelegate
+{
+    var selectedItem = 0
+    var configurationItem = SLComposeSheetConfigurationItem()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
@@ -47,6 +59,20 @@ class ShareViewController: SLComposeServiceViewController, NSURLSessionDelegate 
         let logo = UIImageView(image: UIImage(named: "flat-logo"))
         logo.frame = CGRect(x: navigationBar.frame.width/2-32, y: 6, width: 32, height: 32)
         navigationBar.addSubview(logo)
+        
+        configurationItem.title = ShareDestinations[selectedItem]
+        configurationItem.tapHandler = {
+            let vc = ShareDestinationPickerViewController()
+            vc.completionHandler = { (selectedItem:Int) -> Void in
+                //dispatch_async(dispatch_get_main_queue(),{
+                    self.selectedItem = selectedItem
+                    self.configurationItem.title = ShareDestinations[selectedItem]
+                    self.reloadConfigurationItems()
+                    self.popConfigurationViewController()
+                //})
+            }
+            self.pushConfigurationViewController(vc)
+        }
     }
     
     override func isContentValid() -> Bool {
@@ -82,14 +108,6 @@ class ShareViewController: SLComposeServiceViewController, NSURLSessionDelegate 
         let session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: nil)
         let task = session.dataTaskWithRequest(request)
         task.resume()
-        
-//        let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("com.P105-Home.BackgroundUpload")
-//        configuration.sharedContainerIdentifier = "group.P105-Home"
-//        let manager = Alamofire.Manager(configuration: configuration)
-//        
-//        let params = ["url": bookmark.url, "title": bookmark.title]
-//        manager.request(.POST, NSURL(string: "https://moz-syncapi.sateh.com/1.0/bookmarks")!, parameters: params, encoding: .JSON)
-//            .authenticate(user: credentials.username!, password: credentials.password!)
     }
     
     func fetchSharedURL(completionHandler: (NSURL!, NSError!) -> Void) {
@@ -118,14 +136,7 @@ class ShareViewController: SLComposeServiceViewController, NSURLSessionDelegate 
     }
 
     override func configurationItems() -> [AnyObject]! {
-        
-        let item = SLComposeSheetConfigurationItem()
-        item.title = "Send to Unsorted Bookmarks"
-        item.tapHandler = {
-            self.pushConfigurationViewController(ShareDestinationsViewController())
-        }
-        
-        return [item]
+        return [configurationItem]
     }
     
     override func loadPreviewView() -> UIView! {
