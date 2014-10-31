@@ -45,5 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    func application(application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: () -> Void) {
+        println("READY WITH ", identifier)
+    }
+    
 }
 

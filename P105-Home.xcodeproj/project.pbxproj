@@ -23,6 +23,11 @@
 		66E43B1A19FA983C00B378FC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E43B1919FA983C00B378FC /* HomeViewController.swift */; };
 		66E43B1F19FAE45000B378FC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E43B1E19FAE45000B378FC /* Security.framework */; };
 		66E43B2119FAF04100B378FC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E43B2019FAF04100B378FC /* SettingsViewController.swift */; };
+		E493BFDF1A03132A000735BC /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E493BFDE1A03132A000735BC /* ShareViewController.swift */; };
+		E493BFE11A03132A000735BC /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E493BFE01A03132A000735BC /* MainInterface.storyboard */; };
+		E493BFE41A03132A000735BC /* BookmarkWithFirefox.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E493BFDA1A03132A000735BC /* BookmarkWithFirefox.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E493BFEA1A0313FE000735BC /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E43B1519FA94F300B378FC /* Login.swift */; };
+		E493BFED1A031812000735BC /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6631EAF819F7238A0075E032 /* Alamofire.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +59,13 @@
 			remoteGlobalIDString = F8111E3219A95C8B0040E7D1;
 			remoteInfo = Alamofire;
 		};
+		E493BFE21A03132A000735BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6631EAC119F6F8280075E032 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E493BFD91A03132A000735BC;
+			remoteInfo = BookmarkWithFirefox;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,6 +78,17 @@
 				6631EAFE19F724270075E032 /* Alamofire.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E493BFE91A03132A000735BC /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E493BFE41A03132A000735BC /* BookmarkWithFirefox.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -91,6 +114,12 @@
 		66E43B1919FA983C00B378FC /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		66E43B1E19FAE45000B378FC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		66E43B2019FAF04100B378FC /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E493BFDA1A03132A000735BC /* BookmarkWithFirefox.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BookmarkWithFirefox.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E493BFDD1A03132A000735BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E493BFDE1A03132A000735BC /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		E493BFE01A03132A000735BC /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		E493BFEB1A03152C000735BC /* P105-Home.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "P105-Home.entitlements"; sourceTree = "<group>"; };
+		E493BFEC1A03157B000735BC /* BookmarkWithFirefox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = BookmarkWithFirefox.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +138,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E493BFD71A03132A000735BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E493BFED1A031812000735BC /* Alamofire.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -118,6 +155,7 @@
 				66E43B1E19FAE45000B378FC /* Security.framework */,
 				6631EACB19F6F8280075E032 /* P105-Home */,
 				6631EAE319F6F8280075E032 /* P105-HomeTests */,
+				E493BFDB1A03132A000735BC /* BookmarkWithFirefox */,
 				6631EACA19F6F8280075E032 /* Products */,
 				6631EAF219F7238A0075E032 /* Alamofire.xcodeproj */,
 			);
@@ -128,6 +166,7 @@
 			children = (
 				6631EAC919F6F8280075E032 /* P105-Home.app */,
 				6631EAE019F6F8280075E032 /* P105-HomeTests.xctest */,
+				E493BFDA1A03132A000735BC /* BookmarkWithFirefox.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,6 +174,7 @@
 		6631EACB19F6F8280075E032 /* P105-Home */ = {
 			isa = PBXGroup;
 			children = (
+				E493BFEB1A03152C000735BC /* P105-Home.entitlements */,
 				66E43B1B19FA9EC800B378FC /* Views */,
 				6660789C19F8385100B837C7 /* Tabs.swift */,
 				6610A5A119FED1EA0079AFF3 /* TabBarController.swift */,
@@ -195,6 +235,25 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		E493BFDB1A03132A000735BC /* BookmarkWithFirefox */ = {
+			isa = PBXGroup;
+			children = (
+				E493BFEC1A03157B000735BC /* BookmarkWithFirefox.entitlements */,
+				E493BFDE1A03132A000735BC /* ShareViewController.swift */,
+				E493BFE01A03132A000735BC /* MainInterface.storyboard */,
+				E493BFDC1A03132A000735BC /* Supporting Files */,
+			);
+			path = BookmarkWithFirefox;
+			sourceTree = "<group>";
+		};
+		E493BFDC1A03132A000735BC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E493BFDD1A03132A000735BC /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -206,11 +265,13 @@
 				6631EAC619F6F8280075E032 /* Frameworks */,
 				6631EAC719F6F8280075E032 /* Resources */,
 				6631EAFD19F7240C0075E032 /* Copy Frameworks */,
+				E493BFE91A03132A000735BC /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				6631EAFC19F723F40075E032 /* PBXTargetDependency */,
+				E493BFE31A03132A000735BC /* PBXTargetDependency */,
 			);
 			name = "P105-Home";
 			productName = "P105-Home";
@@ -235,6 +296,23 @@
 			productReference = 6631EAE019F6F8280075E032 /* P105-HomeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		E493BFD91A03132A000735BC /* BookmarkWithFirefox */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E493BFE81A03132A000735BC /* Build configuration list for PBXNativeTarget "BookmarkWithFirefox" */;
+			buildPhases = (
+				E493BFD61A03132A000735BC /* Sources */,
+				E493BFD71A03132A000735BC /* Frameworks */,
+				E493BFD81A03132A000735BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BookmarkWithFirefox;
+			productName = BookmarkWithFirefox;
+			productReference = E493BFDA1A03132A000735BC /* BookmarkWithFirefox.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -246,11 +324,34 @@
 				TargetAttributes = {
 					6631EAC819F6F8280075E032 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = CQYHZCFWC9;
+						DevelopmentTeam = 43AQ936H96;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					6631EADF19F6F8280075E032 = {
 						CreatedOnToolsVersion = 6.1;
 						TestTargetID = 6631EAC819F6F8280075E032;
+					};
+					E493BFD91A03132A000735BC = {
+						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 43AQ936H96;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -275,6 +376,7 @@
 			targets = (
 				6631EAC819F6F8280075E032 /* P105-Home */,
 				6631EADF19F6F8280075E032 /* P105-HomeTests */,
+				E493BFD91A03132A000735BC /* BookmarkWithFirefox */,
 			);
 		};
 /* End PBXProject section */
@@ -315,6 +417,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E493BFD81A03132A000735BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E493BFE11A03132A000735BC /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -342,6 +452,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E493BFD61A03132A000735BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E493BFDF1A03132A000735BC /* ShareViewController.swift in Sources */,
+				E493BFEA1A0313FE000735BC /* Login.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -354,6 +473,11 @@
 			isa = PBXTargetDependency;
 			name = Alamofire;
 			targetProxy = 6631EAFB19F723F40075E032 /* PBXContainerItemProxy */;
+		};
+		E493BFE31A03132A000735BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E493BFD91A03132A000735BC /* BookmarkWithFirefox */;
+			targetProxy = E493BFE21A03132A000735BC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -451,10 +575,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "P105-Home/P105-Home.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "P105-Home/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -463,10 +592,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "P105-Home/P105-Home.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "P105-Home/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -504,6 +638,38 @@
 			};
 			name = Release;
 		};
+		E493BFE51A03132A000735BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = BookmarkWithFirefox/BookmarkWithFirefox.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = BookmarkWithFirefox/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		E493BFE61A03132A000735BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = BookmarkWithFirefox/BookmarkWithFirefox.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = BookmarkWithFirefox/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -533,6 +699,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		E493BFE81A03132A000735BC /* Build configuration list for PBXNativeTarget "BookmarkWithFirefox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E493BFE51A03132A000735BC /* Debug */,
+				E493BFE61A03132A000735BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

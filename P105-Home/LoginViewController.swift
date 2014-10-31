@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
     }
     
     func loginPressed() {
-        let syncTabs = "https://syncapi-dev.sateh.com/1.0/tabs"
+        let syncTabs = "https://moz-syncapi.sateh.com/1.0/tabs"
         Spinner.startAnimating()
         Alamofire.request(.GET, syncTabs, parameters: nil)
             .authenticate(user: self.emailField.text, password: self.passwordField.text)

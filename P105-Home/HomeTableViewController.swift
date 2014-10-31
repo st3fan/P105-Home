@@ -122,7 +122,7 @@ class HomeTableViewController: UITableViewController {
     }
     
     func getTabs() {
-        let syncTabs = "https://syncapi-dev.sateh.com/1.0/tabs"
+        let syncTabs = "https://moz-syncapi.sateh.com/1.0/tabs"
         
         var syncUser: Credentials!
         syncUser = Login().getKeychainUser(Login().getUsername())

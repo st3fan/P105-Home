@@ -19,7 +19,7 @@ class Login: NSObject {
     func isLoggedIn() -> Bool {
         var isLoggedIn: Bool = false
         
-        let userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let userDefaults: NSUserDefaults = NSUserDefaults(suiteName: "group.P105-Home")!
         
         if userDefaults.objectForKey("isLoggedIn") != nil {
             isLoggedIn = userDefaults.objectForKey("isLoggedIn") as Bool
@@ -30,7 +30,7 @@ class Login: NSObject {
     
     func getUsername() -> NSString {
         var str: NSString! = "Not logged in"
-        let userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let userDefaults: NSUserDefaults = NSUserDefaults(suiteName: "group.P105-Home")!
 
         if userDefaults.objectForKey("username") != nil {
             str = userDefaults.objectForKey("username") as NSString
@@ -40,7 +40,7 @@ class Login: NSObject {
     }
     
     func logout() {
-        let userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let userDefaults: NSUserDefaults = NSUserDefaults(suiteName: "group.P105-Home")!
         removeKeychain(getUsername())
         userDefaults.removeObjectForKey("username")
         userDefaults.setObject(false, forKey: "isLoggedIn")
@@ -83,7 +83,7 @@ class Login: NSObject {
         
         SecItemDelete(query as CFDictionaryRef)
         SecItemAdd(query as CFDictionaryRef, nil)
-        let userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let userDefaults: NSUserDefaults = NSUserDefaults(suiteName: "group.P105-Home")!
 
         userDefaults.setObject(username, forKey: "username")
         userDefaults.setObject(true, forKey: "isLoggedIn")
