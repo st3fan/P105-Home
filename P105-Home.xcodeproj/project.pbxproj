@@ -27,7 +27,8 @@
 		E493BFE11A03132A000735BC /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E493BFE01A03132A000735BC /* MainInterface.storyboard */; };
 		E493BFE41A03132A000735BC /* BookmarkWithFirefox.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E493BFDA1A03132A000735BC /* BookmarkWithFirefox.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E493BFEA1A0313FE000735BC /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E43B1519FA94F300B378FC /* Login.swift */; };
-		E493BFED1A031812000735BC /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6631EAF819F7238A0075E032 /* Alamofire.framework */; };
+		E493BFEF1A03DCBE000735BC /* flat-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E493BFEE1A03DCBE000735BC /* flat-logo.png */; };
+		E493BFF11A03DCC6000735BC /* flat-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E493BFF01A03DCC6000735BC /* flat-logo@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,8 @@
 		E493BFE01A03132A000735BC /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		E493BFEB1A03152C000735BC /* P105-Home.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "P105-Home.entitlements"; sourceTree = "<group>"; };
 		E493BFEC1A03157B000735BC /* BookmarkWithFirefox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = BookmarkWithFirefox.entitlements; sourceTree = "<group>"; };
+		E493BFEE1A03DCBE000735BC /* flat-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat-logo.png"; sourceTree = "<group>"; };
+		E493BFF01A03DCC6000735BC /* flat-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat-logo@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +145,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E493BFED1A031812000735BC /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +240,8 @@
 		E493BFDB1A03132A000735BC /* BookmarkWithFirefox */ = {
 			isa = PBXGroup;
 			children = (
+				E493BFEE1A03DCBE000735BC /* flat-logo.png */,
+				E493BFF01A03DCC6000735BC /* flat-logo@2x.png */,
 				E493BFEC1A03157B000735BC /* BookmarkWithFirefox.entitlements */,
 				E493BFDE1A03132A000735BC /* ShareViewController.swift */,
 				E493BFE01A03132A000735BC /* MainInterface.storyboard */,
@@ -422,6 +426,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E493BFE11A03132A000735BC /* MainInterface.storyboard in Resources */,
+				E493BFEF1A03DCBE000735BC /* flat-logo.png in Resources */,
+				E493BFF11A03DCC6000735BC /* flat-logo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,7 +516,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mozilla Corporation (43AQ936H96)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -552,7 +558,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mozilla Corporation (43AQ936H96)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

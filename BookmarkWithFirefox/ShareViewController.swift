@@ -8,138 +8,127 @@
 
 import UIKit
 import Social
-import Alamofire
+
+
+class ShareDestinationsViewController: UITableViewController {
+
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        let titles = ["Send to Unsorted Bookmarks", "Add to my Reading List", "Send to my Home Screen"]
+        cell.textLabel.text = titles[indexPath.row]
+        return cell
+    }
+}
+
+
+
+struct SharedBookmark {
+    var url: String
+    var title: String
+}
 
 class ShareViewController: SLComposeServiceViewController, NSURLSessionDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        navigationController?.navigationBar.backgroundColor = UIColor.orangeColor()
+        
+        // This is a pretty bad back - because it seems navigationItem.titleView does not work :-( - So how does Evernote do it?
+        let navigationBar: UINavigationBar = view.subviews[2].subviews[2] as UINavigationBar
+        let logo = UIImageView(image: UIImage(named: "flat-logo"))
+        logo.frame = CGRect(x: navigationBar.frame.width/2-32, y: 6, width: 32, height: 32)
+        navigationBar.addSubview(logo)
     }
     
     override func isContentValid() -> Bool {
         return true
     }
 
-    override func didSelectPost() {
+    func shareBookmark(bookmark: SharedBookmark, credentials: Credentials) {
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://moz-syncapi.sateh.com/1.0/bookmarks")!)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.HTTPMethod = "POST"
         
-        let login = Login()
+        var object = NSMutableDictionary()
+        object["url"] = bookmark.url
+        object["title"] = bookmark.title
         
-        if login.isLoggedIn() {
-            
-            if let inputItems : [NSExtensionItem] = self.extensionContext!.inputItems as? [NSExtensionItem] {
-                
-                let item = inputItems[0]
-                
-                if let attachments = item.attachments as? [NSItemProvider] {
-                    
-                    if attachments.isEmpty {
-                        self.extensionContext!.completeRequestReturningItems(nil, completionHandler: nil)
-                        return
-                    }
-                    
-                    attachments[0].loadItemForTypeIdentifier("public.url", options:nil, completionHandler: { (obj, error) in
-                        if let u = obj as? NSURL {
-                            let url = u.absoluteString
-                            let title = self.textView.text
-
-                            println("There we go!")
-                            let credentials = Login().getKeychainUser(login.getUsername())
-                            
-                            let request = NSMutableURLRequest(URL: NSURL(string: "https://moz-syncapi.sateh.com/1.0/bookmarks")!)
-                            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                            request.addValue("application/json", forHTTPHeaderField: "Accept")
-                            request.HTTPMethod = "POST"
-                            
-                            var object = NSMutableDictionary()
-                            object["url"] = url
-                            object["title"] = title
-                            
-                            var jsonError: NSError?
-                            let data = NSJSONSerialization.dataWithJSONObject(object, options: nil, error: &jsonError)
-                            if data != nil {
-                                println(data)
-                                request.HTTPBody = data
-                            }
-                            
-                            print("We're good")
-                            
-                            let userPasswordString = "\(credentials.username!):\(credentials.password!)"
-                            let userPasswordData = userPasswordString.dataUsingEncoding(NSUTF8StringEncoding)
-                            let base64EncodedCredential = userPasswordData!.base64EncodedStringWithOptions(nil)
-                            let authString = "Basic \(base64EncodedCredential)"
-                            
-                            let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("com.P105-Home.BackgroundUpload")
-                            configuration.HTTPAdditionalHeaders = ["Authorization" : authString]
-                            configuration.sharedContainerIdentifier = "group.P105-Home"
-                            
-                            let session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-                            let task = session.dataTaskWithRequest(request)
-                            task.resume()
-                            
-                            self.extensionContext!.completeRequestReturningItems([], completionHandler: nil)
-                            
-                        }
-                        self.extensionContext!.completeRequestReturningItems(nil, completionHandler: nil)
-                    })
-                    
-                }
-                
-            }
-
+        var jsonError: NSError?
+        let data = NSJSONSerialization.dataWithJSONObject(object, options: nil, error: &jsonError)
+        if data != nil {
+            println(data)
+            request.HTTPBody = data
         }
         
-//        let login = Login()
-//        println("Hello!")
-//        if login.isLoggedIn() {
-//            println("There we go!")
-//            let credentials = Login().getKeychainUser(login.getUsername())
-//            
-//            let url = NSURL(string: "https://moz-syncapi.sateh.com/1.0/bookmarks")
-//            let request = NSMutableURLRequest(URL: url!)
-//            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//            request.addValue("application/json", forHTTPHeaderField: "Accept")
-//            request.HTTPMethod = "POST"
-//            
-//            var item : NSExtensionItem = self.extensionContext!.inputItems[0] as NSExtensionItem
-//            var itemProvider : NSItemProvider = item.attachments[0] as NSItemProvider
-//            
-//            if itemProvider.hasItemConformingToTypeIdentifier("public.url") {
-//                itemProvider.loadItemForTypeIdentifier("public.url", options: nil, completionHandler: { (urlItem, error) in
-//                    var urlString = urlItem.absoluteString
-//
-//                    var object = NSMutableDictionary()
-//                    object["url"] = "http://www.apple.ca"
-//                    object["title"] = "Welcome to Apple, eh!"
-//                    
-//                    var jsonError: NSError?
-//                    let data = NSJSONSerialization.dataWithJSONObject(object, options: nil, error: &jsonError)
-//                    if data != nil {
-//                        println(data)
-//                        request.HTTPBody = data
-//                    }
-//                    
-//                    print("We're good")
-//                    
-//                    let userPasswordString = "\(credentials.username!):\(credentials.password!)"
-//                    let userPasswordData = userPasswordString.dataUsingEncoding(NSUTF8StringEncoding)
-//                    let base64EncodedCredential = userPasswordData!.base64EncodedStringWithOptions(nil)
-//                    let authString = "Basic \(base64EncodedCredential)"
-//                    
-//                    let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("com.P105-Home.BackgroundUpload")
-//                    configuration.HTTPAdditionalHeaders = ["Authorization" : authString]
-//                    configuration.sharedContainerIdentifier = "group.P105-Home"
-//                    
-//                    let session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-//                    let task = session.dataTaskWithRequest(request)
-//                    task.resume()
-//                })
-//            }
-//
-//            self.extensionContext!.completeRequestReturningItems([], completionHandler: nil)
-//        }
+        let userPasswordString = "\(credentials.username!):\(credentials.password!)"
+        let userPasswordData = userPasswordString.dataUsingEncoding(NSUTF8StringEncoding)
+        let base64EncodedCredential = userPasswordData!.base64EncodedStringWithOptions(nil)
+        let authString = "Basic \(base64EncodedCredential)"
+        
+        let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("com.P105-Home.BackgroundUpload")
+        configuration.HTTPAdditionalHeaders = ["Authorization" : authString]
+        configuration.sharedContainerIdentifier = "group.P105-Home"
+
+        let session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+        let task = session.dataTaskWithRequest(request)
+        task.resume()
+        
+//        let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("com.P105-Home.BackgroundUpload")
+//        configuration.sharedContainerIdentifier = "group.P105-Home"
+//        let manager = Alamofire.Manager(configuration: configuration)
+//        
+//        let params = ["url": bookmark.url, "title": bookmark.title]
+//        manager.request(.POST, NSURL(string: "https://moz-syncapi.sateh.com/1.0/bookmarks")!, parameters: params, encoding: .JSON)
+//            .authenticate(user: credentials.username!, password: credentials.password!)
+    }
+    
+    func fetchSharedURL(completionHandler: (NSURL!, NSError!) -> Void) {
+        if let inputItems : [NSExtensionItem] = self.extensionContext!.inputItems as? [NSExtensionItem] {
+            let item = inputItems[0]
+            if let attachments = item.attachments as? [NSItemProvider] {
+                attachments[0].loadItemForTypeIdentifier("public.url", options:nil, completionHandler: { (obj, error) in
+                    completionHandler(obj as? NSURL, error)
+                })
+            }
+        }
+    }
+    
+    override func didSelectPost() {
+        let login = Login()
+        if login.isLoggedIn() {
+            fetchSharedURL({ (url, error) -> Void in
+                if url != nil {
+                    let sharedBookmark = SharedBookmark(url: url.absoluteString!, title: self.textView.text)
+                    let credentials = Login().getKeychainUser(login.getUsername())
+                    self.shareBookmark(sharedBookmark, credentials: credentials)
+                    self.extensionContext!.completeRequestReturningItems([], completionHandler: nil)
+                }
+            })
+        }
     }
 
     override func configurationItems() -> [AnyObject]! {
-        return NSArray()
+        
+        let item = SLComposeSheetConfigurationItem()
+        item.title = "Send to Unsorted Bookmarks"
+        item.tapHandler = {
+            self.pushConfigurationViewController(ShareDestinationsViewController())
+        }
+        
+        return [item]
+    }
+    
+    override func loadPreviewView() -> UIView! {
+        return nil
     }
 }
