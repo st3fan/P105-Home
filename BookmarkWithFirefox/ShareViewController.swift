@@ -11,7 +11,14 @@ import Social
 
 typealias ShareDestinationPickerCompletionHandler = (selectedItem: Int) -> Void
 
-let ShareDestinations = ["Send to Unsorted Bookmarks", "Add to my Reading List", "Send to my Home Screen"]
+let SharedContainerIdentifier = "group.P105-Home" // TODO: Can we grab this from the .entitlements file instead?
+let LastSelectedShareDestinationDefault = "LastSelectedShareDestination"
+
+let ShareDestinations = [
+    NSLocalizedString("Add to my Mobile Bookmarks", comment: ""),
+    NSLocalizedString("Add to my Reading List", comment: ""),
+    NSLocalizedString("Send to Device", comment: ""),
+]
 
 class ShareDestinationPickerViewController: UITableViewController
 {
@@ -37,11 +44,21 @@ class ShareDestinationPickerViewController: UITableViewController
     }
 }
 
-
-
 struct SharedBookmark {
     var url: String
     var title: String
+}
+
+func findViewInSubviews(view: UIView, test: (UIView) -> Bool) -> UIView? {
+    for v in view.subviews as [UIView] {
+        if test(v) {
+            return v
+        }
+        if let r = findViewInSubviews(v, test) {
+            return r
+        }
+    }
+    return nil
 }
 
 class ShareViewController: SLComposeServiceViewController, NSURLSessionDelegate
@@ -50,24 +67,29 @@ class ShareViewController: SLComposeServiceViewController, NSURLSessionDelegate
     var configurationItem = SLComposeSheetConfigurationItem()
     var logo: UIImageView?
     
+    func findNavigationBar() -> UINavigationBar? {
+        return findViewInSubviews(view, { (v) -> Bool in
+            return (v as? UINavigationBar) != nil
+        }) as? UINavigationBar
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         navigationController?.navigationBar.backgroundColor = UIColor.orangeColor()
         
-        // This is a pretty bad back - because it seems navigationItem.titleView does not work :-( - So how does Evernote do it?
+        if let navigationBar = findNavigationBar() {
+            logo = UIImageView(image: UIImage(named: "flat-logo"))
+            navigationBar.addSubview(logo!)
+        }
         
-        let navigationBar: UINavigationBar = view.subviews[2].subviews[2] as UINavigationBar
-        logo = UIImageView(image: UIImage(named: "flat-logo"))
-        navigationBar.addSubview(logo!)
-        
-        selectedItem = NSUserDefaults.standardUserDefaults().integerForKey("LastSelectedShareDestination")
+        selectedItem = NSUserDefaults.standardUserDefaults().integerForKey(LastSelectedShareDestinationDefault)
         
         configurationItem.title = ShareDestinations[selectedItem]
         configurationItem.tapHandler = {
             let vc = ShareDestinationPickerViewController()
             vc.completionHandler = { (selectedItem:Int) -> Void in
-                NSUserDefaults.standardUserDefaults().setInteger(selectedItem, forKey: "LastSelectedShareDestination")
+                NSUserDefaults.standardUserDefaults().setInteger(selectedItem, forKey: LastSelectedShareDestinationDefault)
                 self.selectedItem = selectedItem
                 self.configurationItem.title = ShareDestinations[selectedItem]
                 self.reloadConfigurationItems()
@@ -78,13 +100,16 @@ class ShareViewController: SLComposeServiceViewController, NSURLSessionDelegate
     }
     
     override func viewDidLayoutSubviews() {
-        let navigationBar: UINavigationBar = view.subviews[2].subviews[2] as UINavigationBar
-        if navigationBar.frame.height < 40 {
-            logo?.frame = CGRect(x: (navigationBar.frame.width/2)-16, y: 4, width: 24, height: 24)
-        } else {
-            logo?.frame = CGRect(x: (navigationBar.frame.width/2)-16, y: 6, width: 32, height: 32)
+        super.viewDidLayoutSubviews()
+        if logo != nil {
+            let navigationBar: UINavigationBar = view.subviews[2].subviews[2] as UINavigationBar
+            if navigationBar.frame.height < 44 { // TODO: Is there a better way to detect the smaller navigation bar?
+                logo?.frame = CGRect(x: (navigationBar.frame.width/2)-16, y: 4, width: 24, height: 24)
+            } else {
+                logo?.frame = CGRect(x: (navigationBar.frame.width/2)-16, y: 6, width: 32, height: 32)
+            }
+            logo?.autoresizingMask = UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin
         }
-        logo?.autoresizingMask = UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin
     }
     
     override func isContentValid() -> Bool {
@@ -104,7 +129,6 @@ class ShareViewController: SLComposeServiceViewController, NSURLSessionDelegate
         var jsonError: NSError?
         let data = NSJSONSerialization.dataWithJSONObject(object, options: nil, error: &jsonError)
         if data != nil {
-            println(data)
             request.HTTPBody = data
         }
         
@@ -115,7 +139,7 @@ class ShareViewController: SLComposeServiceViewController, NSURLSessionDelegate
         
         let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("com.P105-Home.BackgroundUpload")
         configuration.HTTPAdditionalHeaders = ["Authorization" : authString]
-        configuration.sharedContainerIdentifier = "group.P105-Home"
+        configuration.sharedContainerIdentifier = SharedContainerIdentifier
 
         let session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: nil)
         let task = session.dataTaskWithRequest(request)
